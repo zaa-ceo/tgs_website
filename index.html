@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="id">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>CV Ganza – Neon Edition</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+			rel="stylesheet" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+		<style>
+			:root {
+				--dark: #0d1117;
+				--card: #161b22;
+				--neon: cyan;
+				--accent: #0fffc1;
+				--glow: 0 0 8px var(--neon), 0 0 16px var(--neon);
+				--font: 'Poppins', sans-serif;
+			}
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				font-family: var(--font);
+				background: var(--dark);
+				color: #fff;
+				overflow-x: hidden;
+				scroll-behavior: smooth;
+			}
+			::-webkit-scrollbar {
+				width: 6px;
+			}
+			::-webkit-scrollbar-thumb {
+				background: var(--neon);
+				border-radius: 3px;
+			}
+			a {
+				color: var(--neon);
+				text-decoration: none;
+			}
+
+			/* loader */
+			.loader {
+				position: fixed;
+				inset: 0;
+				background: var(--dark);
+				z-index: 9999;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-direction: column;
+			}
+			.loader h1 {
+				font-size: 2rem;
+				margin-bottom: 1rem;
+				letter-spacing: 3px;
+				text-shadow: var(--glow);
+			}
+			.bar {
+				width: 200px;
+				height: 4px;
+				background: #222;
+				border-radius: 2px;
+				overflow: hidden;
+			}
+			.bar div {
+				height: 100%;
+				width: 0;
+				background: var(--neon);
+				box-shadow: var(--glow);
+				animation: load 2s ease-out forwards;
+			}
+			@keyframes load {
+				to {
+					width: 100%;
+				}
+			}
+
+			/* navbar */
+			nav {
+				position: fixed;
+				top: 0;
+				width: 100%;
+				background: rgba(22, 27, 34, 0.8);
+				backdrop-filter: blur(10px);
+				border-bottom: 1px solid var(--neon);
+				z-index: 1000;
+				padding: 1rem 2rem;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.logo {
+				font-weight: 700;
+				font-size: 1.4rem;
+				text-shadow: var(--glow);
+			}
+			nav ul {
+				list-style: none;
+				display: flex;
+				gap: 1.5rem;
+			}
+			nav ul li a {
+				position: relative;
+				padding: 0.3rem 0.6rem;
+				transition: 0.3s;
+			}
+			nav ul li a::after {
+				content: '';
+				position: absolute;
+				left: 0;
+				bottom: -4px;
+				width: 0;
+				height: 2px;
+				background: var(--neon);
+				box-shadow: var(--glow);
+				transition: 0.3s;
+			}
+			nav ul li a:hover::after {
+				width: 100%;
+			}
+			#menuToggle {
+				display: none;
+				font-size: 1.5rem;
+				cursor: pointer;
+			}
+
+			/* hero */
+			section {
+				padding: 6rem 2rem 2rem;
+				max-width: 1100px;
+				margin: auto;
+			}
+			.hero {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: 2rem;
+				min-height: 100vh;
+			}
+			.heroText {
+				flex: 1 1 400px;
+			}
+			.heroText h1 {
+				font-size: 3rem;
+				margin-bottom: 0.5rem;
+			}
+			.typing {
+				color: var(--accent);
+				text-shadow: var(--glow);
+				border-right: 2px solid var(--accent);
+				animation: blink 0.7s infinite;
+			}
+			@keyframes blink {
+				50% {
+					border-color: transparent;
+				}
+			}
+			.buttons {
+				margin-top: 1.5rem;
+				display: flex;
+				gap: 1rem;
+			}
+			.btn {
+				padding: 0.8rem 1.8rem;
+				border: 2px solid var(--neon);
+				background: transparent;
+				color: var(--neon);
+				border-radius: 30px;
+				font-weight: 600;
+				cursor: pointer;
+				transition: 0.3s;
+				position: relative;
+				overflow: hidden;
+			}
+			.btn:hover {
+				box-shadow: var(--glow);
+				transform: translateY(-3px);
+			}
+			.heroImg {
+				flex: 1 1 300px;
+				text-align: center;
+			}
+			.avatar {
+				width: 280px;
+				height: 280px;
+				border-radius: 50%;
+				border: 3px solid var(--neon);
+				box-shadow:
+					var(--glow),
+					inset 0 0 20px var(--neon);
+				object-fit: cover;
+				transition: 0.5s;
+				animation: pulse 3s infinite;
+			}
+			@keyframes pulse {
+				0%,
+				100% {
+					transform: scale(1);
+				}
+				50% {
+					transform: scale(1.03);
+				}
+			}
+
+			/* section umum */
+			h2.sectionTitle {
+				font-size: 2.2rem;
+				margin-bottom: 2rem;
+				text-align: center;
+				letter-spacing: 2px;
+				text-shadow: var(--glow);
+			}
+			.grid {
+				display: grid;
+				gap: 1.5rem;
+				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+			}
+			.card {
+				background: var(--card);
+				border: 1px solid #333;
+				border-radius: 12px;
+				padding: 1.5rem;
+				transition: 0.3s;
+			}
+			.card:hover {
+				transform: translateY(-5px);
+				border-color: var(--neon);
+				box-shadow: var(--glow);
+			}
+			.card i {
+				font-size: 2rem;
+				color: var(--neon);
+				margin-bottom: 0.5rem;
+			}
+
+			/* skills */
+			.skillBar {
+				background: #222;
+				height: 8px;
+				border-radius: 4px;
+				margin: 0.5rem 0;
+				overflow: hidden;
+			}
+			.skillBar div {
+				height: 100%;
+				background: var(--neon);
+				box-shadow: var(--glow);
+				width: 0;
+				transition: width 2s ease;
+			}
+
+			/* timeline */
+			.timeline {
+				position: relative;
+				padding: 1rem 0;
+			}
+			.timeline::before {
+				content: '';
+				position: absolute;
+				left: 20px;
+				top: 0;
+				bottom: 0;
+				width: 2px;
+				background: var(--neon);
+				box-shadow: var(--glow);
+			}
+			.timelineItem {
+				margin: 1.5rem 0;
+				padding-left: 50px;
+				position: relative;
+			}
+			.timelineDot {
+				position: absolute;
+				left: 12px;
+				top: 6px;
+				width: 16px;
+				height: 16px;
+				background: var(--dark);
+				border: 3px solid var(--neon);
+				border-radius: 50%;
+				box-shadow: var(--glow);
+			}
+
+			/* Kontak Footer Modern */
+			.contactFooter {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 2rem;
+				padding: 3rem 2rem;
+				background: var(--card);
+				border-top: 1px solid var(--neon);
+			}
+			.contactLeft {
+				flex: 1 1 400px;
+			}
+			.contactLeft h3 {
+				margin-bottom: 1rem;
+				text-shadow: var(--glow);
+			}
+			.contactInfo {
+				margin-bottom: 1.5rem;
+			}
+			.contactInfo p {
+				margin: 0.5rem 0;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+			.socials {
+				display: flex;
+				gap: 1rem;
+				font-size: 1.4rem;
+			}
+			.socials a:hover {
+				color: var(--accent);
+				transform: scale(1.1);
+			}
+
+			.mapEmbed {
+				width: 100%;
+				height: 200px;
+				border-radius: 8px;
+				border: 1px solid var(--neon);
+				box-shadow: var(--glow);
+				margin-top: 1rem;
+			}
+
+			.contactRight {
+				flex: 1 1 300px;
+			}
+			.contactRight form {
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
+			}
+			.contactRight input,
+			.contactRight textarea {
+				width: 100%;
+				padding: 0.8rem;
+				background: var(--dark);
+				border: 1px solid #444;
+				border-radius: 8px;
+				color: #fff;
+				resize: none;
+			}
+			.contactRight input:focus,
+			.contactRight textarea:focus {
+				outline: none;
+				border-color: var(--neon);
+				box-shadow: var(--glow);
+			}
+
+			footer {
+				text-align: center;
+				padding: 1rem;
+				font-size: 0.8rem;
+				color: #666;
+			}
+
+			/* partikel mouse */
+			.particle {
+				position: fixed;
+				border-radius: 50%;
+				background: var(--neon);
+				box-shadow: var(--glow);
+				pointer-events: none;
+				z-index: 0;
+			}
+
+			@media (max-width: 768px) {
+				nav ul {
+					position: fixed;
+					top: 60px;
+					right: -100%;
+					flex-direction: column;
+					width: 200px;
+					background: var(--card);
+					border-left: 1px solid var(--neon);
+					transition: 0.3s;
+					padding: 1rem;
+				}
+				nav ul.show {
+					right: 0;
+				}
+				#menuToggle {
+					display: block;
+				}
+				.heroText h1 {
+					font-size: 2rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Loader -->
+		<div class="loader">
+			<h1>CV GANZA</h1>
+			<div class="bar"><div></div></div>
+		</div>
+
+		<!-- Navbar -->
+		<nav>
+			<div class="logo">Ganza</div>
+			<ul id="navMenu">
+				<li><a href="#home">Home</a></li>
+				<li><a href="#about">About</a></li>
+				<li><a href="#edu">Education</a></li>
+				<li><a href="#skill">Skills</a></li>
+				<li><a href="#exp">Experience</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+			<i id="menuToggle" class="fas fa-bars"></i>
+		</nav>
+
+		<!-- Home -->
+		<section id="home" class="hero">
+			<div class="heroText">
+				<h1>Halo, saya <span class="typing">Ganza Baadillah</span></h1>
+				<p>Siswa SMK An-Nur Depok | Web Developer Pemula</p>
+				<div class="buttons">
+					<a href="#contact" class="btn">Hubungi</a>
+					<a href="#skill" class="btn">Keahlian</a>
+				</div>
+			</div>
+			<div class="heroImg">
+				<img src="Foto-Wisuda.jpg" alt="Foto" class="avatar" />
+			</div>
+		</section>
+
+		<!-- About -->
+		<section id="about">
+			<h2 class="sectionTitle">Tentang Saya</h2>
+			<div class="grid">
+				<div class="card">
+					<i class="fas fa-user"></i>
+					<h3>Info Pribadi</h3>
+					<p><strong>Nama:</strong> Ganza Baadillah</p>
+					<p><strong>Umur:</strong> 16 Tahun</p>
+					<p><strong>Alamat:</strong> Kel. Pasir-Putih, Depok</p>
+					<p><strong>Email:</strong> ganzabaadilah@gmail.com</p>
+					<p><strong>HP:</strong> 0856-9100-3351</p>
+				</div>
+				<div class="card">
+					<i class="fas fa-target"></i>
+					<h3>Tujuan</h3>
+					<p>
+						Menjadi web developer profesional yang dapat membuat solusi digital
+						bermanfaat.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Education -->
+		<section id="edu">
+			<h2 class="sectionTitle">Pendidikan</h2>
+			<div class="timeline">
+				<div class="timelineItem">
+					<div class="timelineDot"></div>
+					<h3>SMK An-Nur Depok</h3>
+					<small>2024 - Sekarang</small>
+					<p>Jurusan TKJ / RPL</p>
+				</div>
+				<div class="timelineItem">
+					<div class="timelineDot"></div>
+					<h3>MTS An-Nur Depok</h3>
+					<small>2021 - 2024</small>
+					<p>Lulusan aktif berprestasi</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Skills -->
+		<section id="skill">
+			<h2 class="sectionTitle">Keahlian</h2>
+			<div class="grid">
+				<div class="card">
+					<i class="fab fa-html5"></i>
+					<h3>HTML5</h3>
+					<div class="skillBar"><div data-width="80%"></div></div>
+				</div>
+				<div class="card">
+					<i class="fab fa-css3-alt"></i>
+					<h3>CSS3</h3>
+					<div class="skillBar"><div data-width="75%"></div></div>
+				</div>
+				<div class="card">
+					<i class="fab fa-js"></i>
+					<h3>JavaScript</h3>
+					<div class="skillBar"><div data-width="50%"></div></div>
+				</div>
+				<div class="card">
+					<i class="fas fa-paint-brush"></i>
+					<h3>Desain Grafis</h3>
+					<div class="skillBar"><div data-width="60%"></div></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Experience -->
+		<section id="exp">
+			<h2 class="sectionTitle">Pengalaman</h2>
+			<div class="grid">
+				<div class="card">
+					<i class="fas fa-users"></i>
+					<h3>Kerja Kelompok</h3>
+					<p>Proyek website sekolah</p>
+				</div>
+				<div class="card">
+					<i class="fas fa-hands-helping"></i>
+					<h3>Membantu Teman</h3>
+					<p>Tugas desain & presentasi</p>
+				</div>
+				<div class="card">
+					<i class="fas fa-trophy"></i>
+					<h3>Lomba</h3>
+					<p>Juara 3 lomba IT sekolah</p>
+				</div>
+				<div class="card">
+					<i class="fas fa-user-tie"></i>
+					<h3>Ketua Kelas</h3>
+					<p>Organisasi kelas & event</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Kontak Footer Modern -->
+		<footer id="contact">
+			<div class="contactFooter">
+				<div class="contactLeft">
+					<h3>Hubungi Saya</h3>
+					<div class="contactInfo">
+						<p><i class="fas fa-envelope"></i> ganzabaadilah@gmail.com</p>
+						<p><i class="fas fa-phone"></i> 0856-9100-3351</p>
+						<p><i class="fas fa-map-marker-alt"></i> Kel. Pasir-Putih, Depok</p>
+					</div>
+					<div class="socials">
+						<a href="#"><i class="fab fa-instagram"></i></a>
+						<a href="#"><i class="fab fa-linkedin"></i></a>
+						<a href="#"><i class="fab fa-github"></i></a>
+					</div>
+					<!-- Peta -->
+					<iframe
+						class="mapEmbed"
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.0750779133!2d106.8333!3d-6.4025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMjQnMDkuMCJTIDEwNsKwNTAnMDAuMCJF!5e0!3m2!1sid!2sid!4v1234567890"
+						allowfullscreen=""
+						loading="lazy"></iframe>
+				</div>
+
+				<div class="contactRight">
+					<h3>Kirim Pesan</h3>
+					<form
+						onsubmit="
+							alert('Pesan terkirim!');
+							this.reset();
+							return false;
+						">
+						<input type="text" placeholder="Nama" required />
+						<input type="email" placeholder="Email" required />
+						<textarea rows="4" placeholder="Pesan" required></textarea>
+						<button class="btn">Kirim</button>
+					</form>
+				</div>
+			</div>
+
+			<div style="margin-top: 2rem; font-size: 0.8rem; color: #666">
+				© 2025 Ganza Baadillah • built with
+				<i class="fas fa-heart" style="color: var(--neon)"></i>
+			</div>
+		</footer>
+
+		<script>
+			/* loader */
+			window.addEventListener(
+				'load',
+				() => (document.querySelector('.loader').style.display = 'none'),
+			);
+
+			/* toggle menu */
+			const toggle = document.getElementById('menuToggle'),
+				nav = document.getElementById('navMenu');
+			toggle.onclick = () => nav.classList.toggle('show');
+
+			/* typing effect */
+			const txt = 'Ganza Baadillah';
+			let i = 0;
+			function type() {
+				document.querySelector('.typing').textContent = txt.slice(0, i++);
+				if (i <= txt.length) setTimeout(type, 150);
+				else {
+					i = 0;
+					setTimeout(type, 2000);
+				}
+			}
+			type();
+
+			/* skill bar on scroll */
+			const observer = new IntersectionObserver(
+				(e) => {
+					e.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.style.width = entry.target.getAttribute('data-width');
+						}
+					});
+				},
+				{ threshold: 0.5 },
+			);
+			document
+				.querySelectorAll('.skillBar div')
+				.forEach((el) => observer.observe(el));
+
+			/* partikel mouse */
+			document.addEventListener('mousemove', (e) => {
+				const p = document.createElement('div');
+				p.className = 'particle';
+				p.style.left = e.clientX + 'px';
+				p.style.top = e.clientY + 'px';
+				p.style.width = p.style.height = '6px';
+				document.body.appendChild(p);
+				setTimeout(() => p.remove(), 800);
+			});
+
+			/* smooth scroll */
+			document.querySelectorAll('a[href^="#"]').forEach((a) =>
+				a.addEventListener('click', function (e) {
+					e.preventDefault();
+					document
+						.querySelector(this.getAttribute('href'))
+						.scrollIntoView({ behavior: 'smooth' });
+				}),
+			);
+		</script>
+	</body>
+</html>
